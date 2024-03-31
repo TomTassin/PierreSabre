@@ -6,14 +6,14 @@ public class Humain {
 	private int quantiteArgent;
 	
 	public Humain(String nom, String boissonFavorite, int quantiteArgent) {
+		assert quantiteArgent>=0;
 		this.nom = nom;
 		this.boissonFavorite = boissonFavorite;
 		this.quantiteArgent = quantiteArgent;
-		assert quantiteArgent>0;
 	}
 	
 	public void parler(String texte) {
-		System.out.println("<< " + texte + ">>");
+		System.out.println("("+ nom +")- " + texte);
 	}
 	
 	public String getNom() {
@@ -33,12 +33,22 @@ public class Humain {
 	}
 	
 	public void acheter(String bien, int prix) {
+		assert prix>=0;
+		if (quantiteArgent>=prix) {
+			parler("J'ai "+ quantiteArgent +" sous en poche. Je vais pouvoir m'offrir "+ bien +" à "+ prix +" sous");
+			perdreArgent(prix);
+		}else {
+			parler("Je n'ai plus que "+ quantiteArgent +" sous en poche. Je ne peux même pas m'offrir "+ bien +" à "+ prix +" sous");
+		}
 		
 	}
 	
 	public void perdreArgent(int perte) {
-		
+		quantiteArgent-=perte;
 	}
 	
+	public void gagnerArgent(int gain) {
+		quantiteArgent-=gain;
+	}
 	
 }
