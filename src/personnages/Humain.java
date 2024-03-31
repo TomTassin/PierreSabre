@@ -48,7 +48,7 @@ public class Humain {
 	}
 	
 	public void gagnerArgent(int gain) {
-		quantiteArgent-=gain;
+		quantiteArgent+=gain;
 	}
 	
 }
